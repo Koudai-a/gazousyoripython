@@ -274,7 +274,7 @@
         <div class="denom-row">
             <span class="denom-label bill">10,000円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-10000" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-10000" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-10000">0</span>
@@ -284,7 +284,7 @@
         <div class="denom-row">
             <span class="denom-label bill">5,000円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-5000" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-5000" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-5000">0</span>
@@ -294,7 +294,7 @@
         <div class="denom-row">
             <span class="denom-label bill">2,000円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-2000" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-2000" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-2000">0</span>
@@ -304,7 +304,7 @@
         <div class="denom-row">
             <span class="denom-label bill">1,000円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-1000" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-1000" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-1000">0</span>
@@ -314,7 +314,7 @@
         <div class="denom-row">
             <span class="denom-label coin">500円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-500" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-500" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-500">0</span>
@@ -324,7 +324,7 @@
         <div class="denom-row">
             <span class="denom-label coin">100円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-100" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-100" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-100">0</span>
@@ -334,7 +334,7 @@
         <div class="denom-row">
             <span class="denom-label coin">50円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-50" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-50" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-50">0</span>
@@ -344,7 +344,7 @@
         <div class="denom-row">
             <span class="denom-label coin">10円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-10" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-10" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-10">0</span>
@@ -354,7 +354,7 @@
         <div class="denom-row">
             <span class="denom-label coin">5円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-5" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-5" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-5">0</span>
@@ -364,7 +364,7 @@
         <div class="denom-row">
             <span class="denom-label coin">1円</span>
             <div class="input-wrapper">
-                <input type="number" pattern="[0-9]*" inputmode="numeric" min="0" class="denom-input" id="input-1" oninput="calculate()" placeholder="0">
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="denom-input" id="input-1" oninput="calculate()" placeholder="0">
                 <span class="denom-unit">枚</span>
             </div>
             <span class="subtotal-wrapper" id="subtotal-1">0</span>
@@ -405,8 +405,18 @@
             const inputEl = document.getElementById(`input-${val}`);
             const subtotalEl = document.getElementById(`subtotal-${val}`);
             
+            // 全角数字を半角に変換し、数字以外の文字を除去
+            let rawValue = inputEl.value;
+            let normalizedValue = rawValue.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+            normalizedValue = normalizedValue.replace(/\D/g, '');
+            
+            // 入力欄の値を正規化されたものに更新（全角で入力された場合も半角に即時変換）
+            if (rawValue !== normalizedValue) {
+                inputEl.value = normalizedValue;
+            }
+
             // 入力値の取得（空文字やマイナス値は0にする）
-            let count = parseInt(inputEl.value, 10);
+            let count = parseInt(normalizedValue, 10);
             if (isNaN(count) || count < 0) {
                 count = 0;
             }
@@ -458,22 +468,44 @@
         }
 
         // クリップボードへコピー
-        navigator.clipboard.writeText(text).then(() => {
-            showToast("コピーしました！");
-        }).catch(err => {
-            // 代替コピー処理
+        const fallbackCopy = () => {
             const textArea = document.createElement("textarea");
             textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.width = "2em";
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
             document.body.appendChild(textArea);
             textArea.select();
+            textArea.setSelectionRange(0, 99999); // iOS
             try {
-                document.execCommand('copy');
-                showToast("コピーしました！");
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast("コピーしました！");
+                } else {
+                    showToast("コピーに失敗しました");
+                }
             } catch (e) {
                 showToast("コピーに失敗しました");
             }
             document.body.removeChild(textArea);
-        });
+        };
+
+        if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("コピーしました！");
+            }).catch(err => {
+                fallbackCopy();
+            });
+        } else {
+            fallbackCopy();
+        }
     }
 
     function showToast(message) {
